@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+    <context:annotation-config />
+    
+    <!-- Input 1 -->
+    <bean name="basket1" class="com.rgtopsoy.salestaxes.entity.Basket"/>
+    <bean name="item11" class="com.rgtopsoy.salestaxes.entity.TaxfreeItem">
+        <property name="name" value="book"/>
+        <property name="price" value="12.49"/>
+    </bean>
+    <bean name="item12" class="com.rgtopsoy.salestaxes.entity.NormalItem">
+        <property name="name" value="music CD"/>
+        <property name="price" value="14.99"/>
+    </bean>
+    <bean name="item13" class="com.rgtopsoy.salestaxes.entity.TaxfreeItem">
+        <property name="name" value="chocolate bar"/>
+        <property name="price" value="0.85"/>
+    </bean>
+    
+    <!-- Input 2 -->
+    <bean name="basket2" class="com.rgtopsoy.salestaxes.entity.Basket"/>
+    <bean name="item21" class="com.rgtopsoy.salestaxes.entity.TaxfreeItem">
+        <property name="name" value="box of chocolates"/>
+        <property name="price" value="10.00"/>
+        <property name="imported" value="true"/>
+    </bean>
+    <bean name="item22" class="com.rgtopsoy.salestaxes.entity.NormalItem">
+        <property name="name" value="bottle of perfume"/>
+        <property name="price" value="47.50"/>
+        <property name="imported" value="true"/>
+    </bean>
+    
+    <!-- Input 3 -->
+    <bean name="basket3" class="com.rgtopsoy.salestaxes.entity.Basket"/>
+    <bean name="item31" class="com.rgtopsoy.salestaxes.entity.NormalItem">
+        <property name="name" value="bottle of perfume"/>
+        <property name="price" value="27.99"/>
+        <property name="imported" value="true"/>
+    </bean>
+    <bean name="item32" class="com.rgtopsoy.salestaxes.entity.NormalItem">
+        <property name="name" value="bottle of perfume"/>
+        <property name="price" value="18.99"/>
+    </bean>
+    <bean name="item33" class="com.rgtopsoy.salestaxes.entity.TaxfreeItem">
+        <property name="name" value="packet of headache pills"/>
+        <property name="price" value="9.75"/>
+    </bean>
+    <bean name="item34" class="com.rgtopsoy.salestaxes.entity.TaxfreeItem">
+        <property name="name" value="box of chocolates"/>
+        <property name="price" value="11.25"/>
+        <property name="imported" value="true"/>
+    </bean>
+    
+    <!-- LoggerInjector -->
+    <bean class="com.rgtopsoy.salestaxes.logger.LoggerInjector"/>
+    
+    <!-- Register -->
+    <bean id="register" class="com.rgtopsoy.salestaxes.controller.Register" init-method="start" destroy-method="shutdown"/>
+    
+    <!-- TaxCalculator -->
+    <bean name="taxCalculator" class="com.rgtopsoy.salestaxes.util.TaxCalculator"/>
+    
+    <!-- Basket -->
+    <bean id="basket" class="com.rgtopsoy.salestaxes.entity.Basket" scope="prototype"/>
+    
+    <!-- Items -->
+    <bean name="localNormalItem" class="com.rgtopsoy.salestaxes.entity.NormalItem" autowire="byName">
+        <property name="price" value="14.99"/>
+    </bean>
+    <bean name="importedNormalItem" class="com.rgtopsoy.salestaxes.entity.NormalItem" autowire="byName">
+        <property name="price" value="47.50"/>
+        <property name="imported" value="true"/>
+    </bean>
+    <bean name="localTaxfreeItem" class="com.rgtopsoy.salestaxes.entity.TaxfreeItem" autowire="byName">
+        <property name="price" value="12.49"/>
+    </bean>
+    <bean name="importedTaxfreeItem" class="com.rgtopsoy.salestaxes.entity.TaxfreeItem" autowire="byName">
+        <property name="price" value="11.25"/>
+        <property name="imported" value="true"/>
+    </bean>
+    
+</beans>

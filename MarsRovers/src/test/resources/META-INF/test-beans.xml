@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+    <context:annotation-config />
+    
+    <!-- LoggerInjector -->
+    <bean class="com.rgtopsoy.marsrovers.logger.LoggerInjector"/>
+    
+    <!-- Deployer -->
+    <bean id="deployer" class="com.rgtopsoy.marsrovers.controller.Deployer" init-method="start" destroy-method="shutdown"/>
+
+    <!-- InputLoader -->
+    <bean id="loader" class="com.rgtopsoy.marsrovers.util.InputLoader">
+        <property name="inputFile" value="classpath:META-INF/testinput/instructions.txt"/>
+    </bean>
+    
+    <!-- Plateau -->
+    <bean id="plateau" class="com.rgtopsoy.marsrovers.model.Plateau"/>
+    
+    <!-- Rovers -->
+    <bean id="rover" class="com.rgtopsoy.marsrovers.model.Rover"
+        scope="prototype" lazy-init="true" autowire="byName"/>
+    
+    <bean id="testRover" class="com.rgtopsoy.marsrovers.model.Rover" autowire="byName">
+        <property name="heading" value="N"/>
+        <property name="instructions" value="LMLMLMLMM"/>
+        <property name="position">
+            <bean class="com.rgtopsoy.marsrovers.model.Coordinates">
+                <constructor-arg name="x" value="1"/>
+                <constructor-arg name="y" value="2"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

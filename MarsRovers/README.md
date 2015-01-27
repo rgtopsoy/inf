@@ -10,10 +10,6 @@ In order to control a rover, NASA sends a simple string of letters. The possible
 makes the rover spin 90 degrees left or right respectively, without moving from its current spot. 'M' means move 
 forward one grid point, and maintain the same heading.
 Assume that the square directly North from (x, y) is (x, y+1).
-
-When I purchase items I receive a receipt which lists the name of all the items and their price (including tax), finishing with the total cost of the items, and the total amounts of sales taxes paid.  The rounding rules for sales tax are that for a tax rate of n%, a shelf price of p contains (np/100 rounded up to the nearest 0.05) amount of sales tax.
-
-Write an application that prints out the receipt details for these shopping baskets...
 ***
 ### INPUT:
 
@@ -34,7 +30,7 @@ The output for each rover should be its final co-ordinates and heading.
 >5 5  
 >1 2 N  
 >LMLMLMLMM  
->3 3 E
+>3 3 E  
 >MMRMMRMRRM 
 
 *Expected Output*:
